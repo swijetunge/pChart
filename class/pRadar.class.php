@@ -1,14 +1,15 @@
 <?php
  /*
-     pRadar - class to draw radar charts
+    pRadar - class to draw radar charts
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -27,11 +28,11 @@
    var $pChartObject;
 
    /* Class creator */
-   function pRadar()
+   function __construct()
     { }
 
    /* Draw a radar chart */
-   function drawRadar($Object,$Values,$Format="")
+   function drawRadar($Object,$Values,$Format = [])
     {
      $this->pChartObject = $Object;
 
@@ -103,7 +104,7 @@
 
      /* Catch the number of required axis */
      $LabelSerie = $Data["Abscissa"];
-     if ( $LabelSerie != "" )
+     if ( !empty($LabelSerie) )
       { $Points = count($Data["Series"][$LabelSerie]["Data"]); }
      else
       {
@@ -161,7 +162,7 @@
          if ( $Layout == RADAR_LAYOUT_STAR )
           {
            $Color      = array("R"=>$BackgroundR,"G"=>$BackgroundG,"B"=>$BackgroundB,"Alpha"=>$BackgroundAlpha);
-           $PointArray = "";
+           $PointArray = [];
            for($i=0;$i<=360;$i=$i+(360/$Points))
             {
              $PointArray[] = cos(deg2rad($i+$AxisRotation)) * $EdgeHeight + $CenterX;
@@ -187,7 +188,7 @@
            for($j=$Segments;$j>=1;$j--)
             {
              $Color      = array("R"=>$BackgroundGradient["StartR"]+$GradientROffset*$j,"G"=>$BackgroundGradient["StartG"]+$GradientGOffset*$j,"B"=>$BackgroundGradient["StartB"]+$GradientBOffset*$j,"Alpha"=>$BackgroundGradient["StartAlpha"]+$GradientAlphaOffset*$j);
-             $PointArray = "";
+             $PointArray = [];
 
              for($i=0;$i<=360;$i=$i+(360/$Points))
               {
@@ -316,7 +317,7 @@
       }
 
      /* Compute the plots position */
-     $ID = 0; $Plot = "";
+     $ID = 0; $Plot = [];;
      foreach($Data["Series"] as $SerieName => $DataS)
       {
        if ( $SerieName != $LabelSerie )
@@ -349,7 +350,7 @@
          if ($PolyAlpha != NULL)
           $Color = array("R"=>$Palette[$ID]["R"],"G"=>$Palette[$ID]["G"],"B"=>$Palette[$ID]["B"],"Alpha"=>$PolyAlpha,"Surrounding"=>$PointSurrounding);
 
-         $PointsArray = "";
+         $PointsArray = [];;
          for($i=0; $i<count($Points);$i++) 
           { $PointsArray[] = $Points[$i][0]; $PointsArray[] = $Points[$i][1]; }
          $Object->drawPolygon($PointsArray,$Color);
@@ -396,7 +397,7 @@
 
 
    /* Draw a radar chart */
-   function drawPolar($Object,$Values,$Format="")
+   function drawPolar($Object,$Values,$Format = [])
     {
      $this->pChartObject = $Object;
 
@@ -580,7 +581,7 @@
         {
          $LabelX = cos(deg2rad($i+$AxisRotation)) * ($EdgeHeight+$LabelPadding+$TicksLength) + $CenterX;
          $LabelY = sin(deg2rad($i+$AxisRotation)) * ($EdgeHeight+$LabelPadding+$TicksLength) + $CenterY;
-         $Label = $i."°";
+         $Label = $i."ï¿½";
 
          if ( $LabelPos == RADAR_LABELS_ROTATED )
           $Object->drawText($LabelX,$LabelY,$Label,array("Angle"=>(360-$i),"Align"=>TEXT_ALIGN_BOTTOMMIDDLE));
@@ -600,7 +601,7 @@
       }
 
      /* Compute the plots position */
-     $ID = 0; $Plot = "";
+     $ID = 0; $Plot = [];
      foreach($Data["Series"] as $SerieName => $DataSet)
       {
        if ( $SerieName != $LabelSerie )
@@ -633,7 +634,7 @@
          if ($PolyAlpha != NULL)
           $Color = array("R"=>$Palette[$ID]["R"],"G"=>$Palette[$ID]["G"],"B"=>$Palette[$ID]["B"],"Alpha"=>$PolyAlpha,"Surrounding"=>$PointSurrounding);
 
-         $PointsArray = "";
+         $PointsArray = [];
          for($i=0; $i<count($Points);$i++) 
           { $PointsArray[] = $Points[$i][0]; $PointsArray[] = $Points[$i][1]; }
 

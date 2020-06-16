@@ -39,7 +39,7 @@
  /* Build a list of the examples & categories */
  $DirectoryHandle = opendir("scripts");
   {
-   $Tree = "";
+   $Tree = [];
    while (($FileName = readdir($DirectoryHandle)) !== false)
    {
     if ( !in_array($FileName,$Exclusion))
@@ -83,7 +83,7 @@
     echo " <tr valign=middle>\r\n";
     echo "  <td><img src='".$Icon."' width=16 height=20 alt=''/></td>\r\n";
     echo "  <td><img src='../resources/application_view_tile.png' width=16 height=16 alt=''/></td>\r\n";
-    echo "  <td><div class=folder onclick='showExample(".chr(34).$Element.chr(34).");'>&nbsp;".$Element."</div></td>\r\n";
+    echo "  <td><div id='".$Element."' class=folder>&nbsp;<a class=smallLinkGrey href='#' onclick='showExample(".chr(34).$Element.chr(34).");'>".$Element."</a></div></td>\r\n";
     echo " </tr>\r\n";
     echo "</table>\r\n";
    }
@@ -97,7 +97,7 @@
    <td>&nbsp;Rendering area</td>
    </tr></table>
 
-   <div style='display:table-cell; padding: 10px; border: 2px solid #FFFFFF; vertical-align: middle; overflow: auto; background-image: url("resources/dash.png");'>
+   <div style='display:table-cell; padding: 10px; border: 2px solid #FFFFFF; vertical-align: middle; overflow: auto; background-image: url("../resources/dash.png");'>
     <div style='font-size: 10px;' id=render>
      <table><tr><td><img src='../resources/accept.png' width=16 height=16 alt=""/></td><td>Click on an example to render it!</td></tr></table>
     </div>
@@ -110,7 +110,7 @@
     <td>&nbsp;HTML Source area</td>
    </tr></table>
 
-   <div style='display:table-cell; padding: 10px;  border: 2px solid #FFFFFF; vertical-align: middle; overflow: auto; background-image: url("resources/dash.png");'>
+   <div style='display:table-cell; padding: 10px;  border: 2px solid #FFFFFF; vertical-align: middle; overflow: auto; background-image: url("../resources/dash.png");'>
     <div id=htmlsource style='width: 700px; font-size: 13px; font-family: Lucida Console'>
 
      &lt;html&gt;<br/>
@@ -147,8 +147,13 @@
 </body>
 </html>
 <script>
+ LastScript = "";
+
  function showExample(FileName)
   {
+   if ( LastScript !== "" ) { document.getElementById(LastScript).style.fontWeight = "normal"; }
+   document.getElementById(FileName).style.fontWeight = "bold";
+   LastScript = FileName;
    document.getElementById("render").innerHTML = "<img src='scripts/"+FileName+".php?Seed="+Math.random(100)+"' id='testPicture' alt='' class='pChartPicture'/>";
    viewPHP("scripts/"+FileName+".php");
 

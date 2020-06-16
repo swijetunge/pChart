@@ -716,7 +716,7 @@
   {
    list($R,$G,$B) = extractColors($l_font_color);
 
-   $Config = "";
+   $Config = [];
    $Config["FontR"]    = $R; $Config["FontG"] = $G; $Config["FontB"] = $B;
    $Config["FontName"] = "../../../fonts/".$l_font;
    $Config["FontSize"] = $l_font_size;
@@ -829,7 +829,7 @@
   {
    $Values = preg_split("/!/",right($Values,strlen($Values)-1));
 
-   $Temp = ""; $Result = "";
+   $Temp = ""; $Result = [];
    foreach($Values as $Key => $Value)
     {
      if ( $Value == "" )
@@ -859,7 +859,7 @@
    $handle = @fopen($FileName, "r");
    if ($handle)
     {
-     $Result = "";
+     $Result = [];
      while (($buffer = fgets($handle, 4096)) !== false)
       {
        $Values = preg_split("/,/",$buffer);

@@ -1,6 +1,5 @@
 body
  {
-  margin: 4px;
   text-align: left;
   font-family: tahoma;
   background-color: #FFFFFF;
@@ -61,7 +60,7 @@ input[type="submit"]
 
 pre
  {
-  font-family; tahoma;
+  font-family: tahoma;
   font-size: 11px;
   background-color: #FFFFFF;
   border: 1px solid #E0E0E0;
@@ -71,7 +70,7 @@ pre
   overflow-x: auto;
   white-space: pre-wrap;
   white-space: -moz-pre-wrap !important;
-  white-space: -pre-wrap;
+  white-space: pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word;
  }

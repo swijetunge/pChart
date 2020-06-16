@@ -1,14 +1,15 @@
 <?php
  /*
-     pDraw - class to manipulate data arrays
+    pData - class to manipulate data arrays
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -67,9 +68,9 @@
                         "7"=>array("R"=>224,"G"=>176,"B"=>46,"Alpha"=>100));
 
    /* Class creator */
-   function pData()
+   function __construct()
     {
-     $this->Data = "";
+     $this->Data = [];
      $this->Data["XAxisDisplay"]	= AXIS_FORMAT_DEFAULT;
      $this->Data["XAxisFormat"]		= NULL;
      $this->Data["XAxisName"]		= NULL;
@@ -379,7 +380,7 @@
     }
 
    /* Add random values to a given serie */
-   function addRandomValues($SerieName="Serie1",$Options="")
+   function addRandomValues($SerieName="Serie1",$Options = [])
     {
      $Values    = isset($Options["Values"]) ? $Options["Values"] : 20;
      $Min       = isset($Options["Min"]) ? $Options["Min"] : 0;
@@ -488,7 +489,7 @@
     {
      if ( !isset($this->Data["Series"][$Serie]) ) { return(NULL); }
 
-     $Result = "";
+     $Result = [];;
      $Result["R"] = $this->Data["Series"][$Serie]["Color"]["R"];
      $Result["G"] = $this->Data["Series"][$Serie]["Color"]["G"];
      $Result["B"] = $this->Data["Series"][$Serie]["Color"]["B"];
@@ -528,7 +529,7 @@
    function loadPalette($FileName,$Overwrite=FALSE)
     {
      if ( !file_exists($FileName) ) { return(-1); }
-     if ( $Overwrite ) { $this->Palette = ""; }
+     if ( $Overwrite ) { $this->Palette = []; }
 
      $fileHandle = @fopen($FileName, "r");
      if (!$fileHandle) { return(-1); }
@@ -539,7 +540,7 @@
         {
          list($R,$G,$B,$Alpha) = preg_split("/,/",$buffer);
          if ( $this->Palette == "" ) { $ID = 0; } else { $ID = count($this->Palette); }
-         $this->Palette[$ID] = array("R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha);
+         $this->Palette[$ID] = ["R"=>$R,"G"=>$G,"B"=>$B,"Alpha"=>$Alpha];
         }
       }
      fclose($fileHandle);
@@ -611,7 +612,7 @@
     {
      $Abscissa = $this->Data["Abscissa"];
 
-     $SelectedSeries = "";
+     $SelectedSeries = [];
      $MaxVal         = 0;
      foreach($this->Data["Axis"] as $AxisID => $Axis)
       {
@@ -664,7 +665,7 @@
     }
 
    /* Load data from a CSV (or similar) data source */
-   function importFromCSV($FileName,$Options="")
+   function importFromCSV($FileName,$Options = [])
     {
      $Delimiter		= isset($Options["Delimiter"]) ? $Options["Delimiter"] : ",";
      $GotHeader		= isset($Options["GotHeader"]) ? $Options["GotHeader"] : FALSE;
@@ -701,7 +702,7 @@
     }
 
    /* Create a dataset based on a formula */
-   function createFunctionSerie($SerieName,$Formula="",$Options="")
+   function createFunctionSerie($SerieName,$Formula="",$Options = [])
     {
      $MinX		= isset($Options["MinX"]) ? $Options["MinX"] : -10;
      $MaxX		= isset($Options["MaxX"]) ? $Options["MaxX"] : 10;
@@ -712,7 +713,7 @@
 
      if ( $Formula == "" ) { return(0); }
 
-     $Result = ""; $Abscissa = "";
+     $Result = $Abscissa = [];
      for($i=$MinX; $i<=$MaxX; $i=$i+$XStep)
       {
        $Expression = "\$return = '!'.(".str_replace("z",$i,$Formula).");";
@@ -738,7 +739,7 @@
       {
        if (isset($this->Data["Series"][$SerieName]))
         {
-         $Data = "";
+         $Data = [];
          foreach($this->Data["Series"][$SerieName]["Data"] as $Key => $Value)
           { if ( $Value == VOID ) { $Data[] = VOID; } else { $Data[] = -$Value; } }
          $this->Data["Series"][$SerieName]["Data"] = $Data;
@@ -775,7 +776,7 @@
 
    /* Convert a string to a single elements array */
    function convertToArray($Value)
-    { $Values = ""; $Values[] = $Value; return($Values); }
+    { $Values = []; $Values[] = $Value; return($Values); }
 
    /* Class string wrapper */
    function __toString()

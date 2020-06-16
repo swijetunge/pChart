@@ -25,8 +25,33 @@
  <script type='text/javascript' src='includes/rounded_corners_lite.inc.js'></script>
  <script type='text/javascript' src='includes/jscolor.js'></script>
  <script type='text/javascript' src='includes/functions.js'></script>
+<style>
+    html       { height: 100%; }
+    body       { background-color: #F0F0F0; font-family: tahoma; font-size: 14px; height: 100%;}
+    td  	     { font-family: tahoma; font-size: 11px; }
+    div.txt    { font-family: tahoma; font-size: 11px; width: 660px; padding: 15px; }
+    a.smallLink:link    { text-decoration: none; color: #6A6A6A; }
+    a.smallLink:visited { text-decoration: none; color: #6A6A6A; }
+    a.smallLink:hover   { text-decoration: underline; color: #6A6A6A; }
+</style>
 </head>
 <body>
+
+<table style='border: 2px solid #FFFFFF;'><tr><td>
+<div style='font-size: 11px; padding: 2px; color: #FFFFFF; background-color: #666666; border-bottom: 3px solid #484848;'>&nbsp;Navigation</div>
+<table style='padding: 1px; background-color: #E0E0E0; border: 1px solid #D0D0D0; border-top: 1px solid #FFFFFF;'><tr>
+        <td width=16><img src='../resources/application_view_tile.png' width=16 height=16 alt=''/></td>
+        <td width=95>&nbsp;<a class=smallLink href='../'>Examples</a></td>
+        <td width=16><img src='../resources/application_view_list.png' width=16 height=16 alt=''/></td>
+        <td width=100><b>Sandbox</b></td>
+        <td width=16><img src='../resources/application_view_list.png' width=16 height=16 alt=''/></td>
+        <td width=100>&nbsp;<a class=smallLinkGrey href='../delayedLoader/'>Delayed loader</a></td>
+        <td width=16><img src='../resources/application_view_list.png' width=16 height=16 alt=''/></td>
+        <td width=100>&nbsp;<a class=smallLinkGrey href='../imageMap/'>Image Map</a></td>
+    </tr></table>
+</td></tr></table>
+
+<br/>
  <table style=''><tr><td>
   <table style='padding: 2px; background-color: #E0E0E0; border: 1px solid #D0D0D0;'><tr>
    <td class='topMenu'>

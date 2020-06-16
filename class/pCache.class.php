@@ -1,14 +1,15 @@
 <?php
  /*
-     pCache - speed up the rendering by caching up the pictures
+    pCache - speed up the rendering by caching up the pictures
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -21,7 +22,7 @@
    var $CacheDB;
 
    /* Class creator */
-   function pCache($Settings="")
+   function __construct($Settings = [])
     {
      $CacheFolder	= isset($Settings["CacheFolder"]) ? $Settings["CacheFolder"] : "cache";
      $CacheIndex	= isset($Settings["CacheIndex"]) ? $Settings["CacheIndex"] : "index.db";

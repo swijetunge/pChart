@@ -1,14 +1,15 @@
 <?php
  /*
-     pBubble - class to draw bubble charts
+    pBubble - class to draw bubble charts
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -23,7 +24,7 @@
    var $pDataObject;
 
    /* Class creator */
-   function pBubble($pChartObject,$pDataObject)
+   function __construct($pChartObject,$pDataObject)
     {
      $this->pChartObject = $pChartObject;
      $this->pDataObject  = $pDataObject;
@@ -109,7 +110,7 @@
     }
 
    /* Prepare the scale */
-   function drawBubbleChart($DataSeries,$WeightSeries,$Format="")
+   function drawBubbleChart($DataSeries,$WeightSeries,$Format = [])
     {
      $ForceAlpha	= isset($Format["ForceAlpha"]) ? $Format["ForceAlpha"] : VOID;
      $DrawBorder	= isset($Format["DrawBorder"]) ? $Format["DrawBorder"] : TRUE;
@@ -251,12 +252,12 @@
       }
     }
 
-   function writeBubbleLabel($SerieName,$SerieWeightName,$Points,$Format="")
+   function writeBubbleLabel($SerieName,$SerieWeightName,$Points,$Format = [])
     {
      $OverrideTitle	= isset($Format["OverrideTitle"]) ? $Format["OverrideTitle"] : NULL;
      $DrawPoint		= isset($Format["DrawPoint"]) ? $Format["DrawPoint"] : LABEL_POINT_BOX;
 
-     if ( !is_array($Points) ) { $Point = $Points; $Points = ""; $Points[] = $Point; }
+     if ( !is_array($Points) ) { $Point = $Points; $Points = []; $Points[] = $Point; }
 
      $Data    = $this->pDataObject->getData();
      $Palette = $this->pDataObject->getPalette();
@@ -296,8 +297,8 @@
        else
         $Description = "No description";
 
-       $Series = "";
-       $Series[] = array("Format"=>$Color,"Caption"=>$Caption);
+       $Series = [];
+       $Series[] = ["Format"=>$Color,"Caption"=>$Caption];
 
        if ( $Data["Orientation"] == SCALE_POS_LEFTRIGHT )
         {

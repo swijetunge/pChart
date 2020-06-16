@@ -2,13 +2,14 @@
  /*
      pBarcode39 - class to create barcodes (39B)
 
-     Version     : 2.1.4
+     Version     : 2.2.0
      Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+     Updated by  : Sandun Wijetunge
+     Last Update : 16/06/2020
 
      This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+     http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -24,11 +25,11 @@
    var $MOD43;
 
    /* Class creator */
-   function pBarcode39($BasePath="",$EnableMOD43=FALSE)
+   function __construct($BasePath="",$EnableMOD43=FALSE)
     {
      $this->MOD43  = $EnableMOD43;
-     $this->Codes   = "";
-     $this->Reverse = "";
+     $this->Codes   = [];
+     $this->Reverse = [];
 
      $FileHandle = @fopen($BasePath."data/39.db", "r");
 
@@ -47,7 +48,7 @@
     }
 
    /* Return the projected size of a barcode */
-   function getSize($TextString,$Format="")
+   function getSize($TextString,$Format=[])
     {
      $Angle		= isset($Format["Angle"]) ? $Format["Angle"] : 0;
      $ShowLegend	= isset($Format["ShowLegend"]) ? $Format["ShowLegend"] : FALSE;
@@ -105,7 +106,7 @@
     }
 
    /* Create the encoded string */
-   function draw($Object,$Value,$X,$Y,$Format="")
+   function draw($Object,$Value,$X,$Y,$Format=[])
     {
      $this->pChartObject = $Object;
 

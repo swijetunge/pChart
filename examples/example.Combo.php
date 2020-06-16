@@ -72,5 +72,5 @@
  $myPicture->drawLegend(580,35,array("Style"=>LEGEND_ROUND,"Alpha"=>20,"Mode"=>LEGEND_HORIZONTAL));
 
  /* Render the picture (choose the best way) */
- $myPicture->autoOutput("pictures/example.combo.png");
+ $myPicture->autoOutput("pictures/example.Combo.png");
 ?>

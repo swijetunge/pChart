@@ -1,17 +1,18 @@
 <?php
  /*
-     pBarcode128 - class to create barcodes (128B)
+    pBarcode128 - class to create barcodes (128B)
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
-     You can find the whole class documentation on the pChart web site.
- */
+    You can find the whole class documentation on the pChart web site.
+*/
 
  /* pData class definition */
  class pBarcode128
@@ -23,10 +24,10 @@
    var $CRC;
 
    /* Class creator */
-   function pBarcode128($BasePath="")
+   function __construct($BasePath="")
     {
-     $this->Codes   = "";
-     $this->Reverse = "";
+     $this->Codes   = [];
+     $this->Reverse = [];
 
      $FileHandle = @fopen($BasePath."data/128B.db", "r");
 
@@ -48,7 +49,7 @@
     }
 
    /* Return the projected size of a barcode */
-   function getSize($TextString,$Format="")
+   function getSize($TextString,$Format = [])
     {
      $Angle		= isset($Format["Angle"]) ? $Format["Angle"] : 0;
      $ShowLegend	= isset($Format["ShowLegend"]) ? $Format["ShowLegend"] : FALSE;
@@ -101,7 +102,7 @@
     }
 
    /* Create the encoded string */
-   function draw($Object,$Value,$X,$Y,$Format="")
+   function draw($Object,$Value,$X,$Y,$Format = [])
     {
      $this->pChartObject = $Object;
 

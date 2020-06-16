@@ -1,14 +1,15 @@
 <?php
  /*
-     pSurface - class to draw surface charts
+    pSurface - class to draw surface charts
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -30,11 +31,11 @@
    var $Points;
 
    /* Class creator */
-   function pSurface($pChartObject)
+   function __construct($pChartObject)
     {
      $this->pChartObject = $pChartObject;
      $this->GridSize     = 10;
-     $this->Points       = "";
+     $this->Points       = [];
     }
 
    /* Define the grid size and initialise the 2D matrix */
@@ -61,7 +62,7 @@
     }
 
    /* Write the X labels */
-   function writeXLabels($Format="")
+   function writeXLabels($Format = [])
     {
      $R			= isset($Format["R"]) ? $Format["R"] : $this->pChartObject->FontColorR;
      $G			= isset($Format["G"]) ? $Format["G"] : $this->pChartObject->FontColorG;
@@ -108,7 +109,7 @@
     }
 
    /* Write the Y labels */
-   function writeYLabels($Format="")
+   function writeYLabels($Format = [])
     {
      $R			= isset($Format["R"]) ? $Format["R"] : $this->pChartObject->FontColorR;
      $G			= isset($Format["G"]) ? $Format["G"] : $this->pChartObject->FontColorG;
@@ -120,7 +121,7 @@
      $Labels		= isset($Format["Labels"]) ? $Format["Labels"] : NULL;
      $CountOffset	= isset($Format["CountOffset"]) ? $Format["CountOffset"] : 0;
 
-     if ( $Labels != NULL && !is_array($Labels) ) { $Label = $Labels; $Labels = ""; $Labels[] = $Label; }
+     if ( $Labels != NULL && !is_array($Labels) ) { $Label = $Labels; $Labels = []; $Labels[] = $Label; }
 
      $Y0    = $this->pChartObject->GraphAreaY1;
      $YSize = ($this->pChartObject->GraphAreaY2 - $this->pChartObject->GraphAreaY1) / ($this->GridSizeY+1);
@@ -147,7 +148,7 @@
     }
 
    /* Draw the area arround the specified Threshold */
-   function drawContour($Threshold,$Format="")
+   function drawContour($Threshold,$Format = [])
     {
      $R		= isset($Format["R"]) ? $Format["R"] : 0;
      $G		= isset($Format["G"]) ? $Format["G"] : 0;
@@ -190,7 +191,7 @@
     }
 
    /* Draw the surface chart */
-   function drawSurface($Format="")
+   function drawSurface($Format = [])
     {
      $Palette		= isset($Format["Palette"]) ? $Format["Palette"] : NULL;
      $ShadeR1		= isset($Format["ShadeR1"]) ? $Format["ShadeR1"] : 77;
@@ -254,7 +255,7 @@
    /* Compute the missing points */
    function computeMissing()
     {
-     $Missing = "";
+     $Missing = [];
      for($X=0;$X<=$this->GridSizeX;$X++)
       {
        for($Y=0;$Y<=$this->GridSizeY;$Y++)

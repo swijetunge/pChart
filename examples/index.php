@@ -36,7 +36,7 @@
  /* Build a list of the examples & categories */
  $DirectoryHandle = opendir(".");
   {
-   $Tree = "";
+   $Tree = [];
    while (($FileName = readdir($DirectoryHandle)) !== false)
    {
     if ( !in_array($FileName,$Exclusion))
@@ -187,7 +187,7 @@
 
  function render(PictureName)
   {
-   if ( LastScript != "" ) { document.getElementById(LastScript).style.fontWeight = "normal"; }
+   if ( LastScript !== "" ) { document.getElementById(LastScript).style.fontWeight = "normal"; }
    document.getElementById(PictureName).style.fontWeight = "bold";
    LastScript = PictureName;
 

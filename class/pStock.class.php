@@ -1,14 +1,15 @@
 <?php
  /*
-     pStock - class to draw stock charts
+    pStock - class to draw stock charts
 
-     Version     : 2.1.4
-     Made by     : Jean-Damien POGOLOTTI
-     Last Update : 19/01/2014
+    Version     : 2.2.0
+    Made by     : Jean-Damien POGOLOTTI
+    Updated by  : Sandun Wijetunge
+    Last Update : 16/06/2020
 
-     This file can be distributed under the license you can find at :
+    This file can be distributed under the license you can find at :
 
-                       http://www.pchart.net/license
+    http://www.pchart.net/license
 
      You can find the whole class documentation on the pChart web site.
  */
@@ -22,14 +23,14 @@
    var $pDataObject;
 
    /* Class creator */
-   function pStock($pChartObject,$pDataObject)
+   function __construct($pChartObject,$pDataObject)
     {
      $this->pChartObject = $pChartObject;
      $this->pDataObject  = $pDataObject;
     }
 
    /* Draw a stock chart */
-   function drawStockChart($Format="")
+   function drawStockChart($Format = [])
     {
      $SerieOpen		= isset($Format["SerieOpen"]) ? $Format["SerieOpen"] : "Open";
      $SerieClose	= isset($Format["SerieClose"]) ? $Format["SerieClose"] : "Close";
@@ -91,7 +92,7 @@
      if ( !isset($Data["Series"][$SerieOpen]) || !isset($Data["Series"][$SerieClose]) || !isset($Data["Series"][$SerieMin]) || !isset($Data["Series"][$SerieMax]) )
       return(STOCK_MISSING_SERIE);
 
-     $Plots = "";
+     $Plots = [];
      foreach($Data["Series"][$SerieOpen]["Data"] as $Key => $Value)
       {
        $Point = "";
